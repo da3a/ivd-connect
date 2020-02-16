@@ -7,7 +7,7 @@ function Welcome() {
 
     return (
         <div>
-            <div className="row">
+            <div className="row m-4">
                 <div className="col">
                     Welcome to this simple questionnaire app... Please click start to begin
                 </div>

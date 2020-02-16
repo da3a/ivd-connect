@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { AppContext } from "../AppContext";
-import Question from "./Question"
+import QuestionView from "./QuestionView.js"
 
 function Summary() {
 
@@ -13,7 +13,7 @@ function Summary() {
                 //     (question => (<Question question={question} />))
                 // )
                 questions.map(
-                    question => (<Question question={question} />)
+                    question => (<QuestionView question={question} />)
                 )
             }
             <div className="row">

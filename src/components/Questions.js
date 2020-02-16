@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { AppContext } from "../AppContext";
 
-import Question from "./Question"
+import QuestionEdit from "./QuestionEdit"
 
 function Questions({ start }) {
 
@@ -17,7 +17,7 @@ function Questions({ start }) {
                 // )
                 questions.filter(question => (question.Id >= parseInt(start) && question.Id < (parseInt(start) + 5))
                 ).map(
-                    question => (<Question question={question} />)
+                    question => (<QuestionEdit question={question} />)
                 )
             }
             <div className="row">
