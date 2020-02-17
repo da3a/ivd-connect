@@ -6,15 +6,21 @@ import locales from ".././locales";
 
 import Survey from "./Survey"
 
+import Grid from '@material-ui/core/Grid';
+
+import Header from "./Header"
+import Footer from "./Footer"
+
 function BasePage() {
 
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col bg-dark text-white text-center">A questionnaire app</div>
-            </div>
+            <React.Fragment>
+            <Header/>
+            <Grid container spacing="0" direction="column" justify="center">
             <Survey />
-        </div>
+            </Grid>
+            <Footer/>
+            </React.Fragment>
     )
 }
 

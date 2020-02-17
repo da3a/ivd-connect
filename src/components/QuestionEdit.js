@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react"
 
+import Button from '@material-ui/core/Button';
+
 function QuestionEdit({ question, onUpdateQuestion }) {
 
     const [value, setValue] = useState(question.Response)
@@ -33,7 +35,7 @@ function QuestionEdit({ question, onUpdateQuestion }) {
             </div>
             <div className="row">
                 <div className="col-2">
-                    <button className="btn-primary">Update</button>
+                    <Button className="btn-primary">Update</Button>
                 </div>
             </div>
             <div className="row">

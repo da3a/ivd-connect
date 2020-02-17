@@ -10,7 +10,7 @@ import { AppContext } from "../AppContext";
 function Survey() {
 
     const { state } = useContext(AppContext);
-
+    
     switch (state.step) {
         case 1:
             return <Welcome />

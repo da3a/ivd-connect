@@ -2,6 +2,8 @@ import React, { useContext } from "react"
 import { AppContext } from "../AppContext";
 import QuestionView from "./QuestionView.js"
 
+import Button from '@material-ui/core/Button';
+
 function Summary() {
 
     const { survey, nextStep, prevStep } = useContext(AppContext);
@@ -18,9 +20,9 @@ function Summary() {
             }
             <div className="row">
                 <div className="col">
-                    <button className="btn-primary" onClick={(e) => prevStep(e)}>Previous</button>
+                    <Button className="btn-primary" onClick={(e) => prevStep(e)}>Previous</Button>
                     &nbsp;
-                <button className="btn-primary" onClick={(e) => nextStep(e)}>Next</button>
+                <Button className="btn-primary" onClick={(e) => nextStep(e)}>Next</Button>
                 </div>
             </div>
         </div>

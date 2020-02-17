@@ -1,6 +1,8 @@
 import React, { useContext } from "react"
 import { AppContext } from "../AppContext";
 
+import Button from '@material-ui/core/Button';
+
 import QuestionEdit from "./QuestionEdit"
 
 function Questions({ start }) {
@@ -25,9 +27,9 @@ function Questions({ start }) {
 
             <div className="row m-2">
                 <div className="col">
-                    <button className="btn-primary" onClick={(e) => prevStep(e)}>Previous</button>
+                    <Button className="btn-primary" onClick={(e) => prevStep(e)}>Previous</Button>
                     &nbsp;
-                    <button className="btn-primary" onClick={(e) => nextStep(e)}>Next</button>
+                    <Button className="btn-primary" onClick={(e) => nextStep(e)}>Next</Button>
                 </div>
             </div>
         </div>
