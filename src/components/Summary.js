@@ -4,7 +4,7 @@ import QuestionView from "./QuestionView.js"
 
 function Summary() {
 
-    const { questions, nextStep, prevStep } = useContext(AppContext);
+    const { survey, nextStep, prevStep } = useContext(AppContext);
 
     return (
         <div>
@@ -12,7 +12,7 @@ function Summary() {
                 // questions.map(
                 //     (question => (<Question question={question} />))
                 // )
-                questions.map(
+                survey.Questions.map(
                     question => (<QuestionView question={question} />)
                 )
             }

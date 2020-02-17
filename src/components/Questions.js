@@ -5,28 +5,25 @@ import QuestionEdit from "./QuestionEdit"
 
 function Questions({ start }) {
 
-    const { questions, nextStep, prevStep } = useContext(AppContext);
+    const { survey, onUpdateQuestion, nextStep, prevStep } = useContext(AppContext);
 
     console.log(` start: ${start}`)
 
     return (
         <div>
             {
-                // questions.map(
-                //     (question => (<Question question={question} />))
-                // )
-                questions.filter(question => (question.Id >= parseInt(start) && question.Id < (parseInt(start) + 5))
+                survey.Questions.filter(question => (question.Id >= parseInt(start) && question.Id < (parseInt(start) + 5))
                 ).map(
-                    question => (<QuestionEdit question={question} />)
+                    question => (<QuestionEdit key={question.Id} question={question} onUpdateQuestion={onUpdateQuestion} />)
                 )
             }
-            <div className="row">
+            <div className="row m-2">
                 <div className="col">
-                    Questions {start} to {start + 5}
+                    Questions {parseInt(start)} to {parseInt(start) + 4}
                 </div>
             </div>
 
-            <div className="row">
+            <div className="row m-2">
                 <div className="col">
                     <button className="btn-primary" onClick={(e) => prevStep(e)}>Previous</button>
                     &nbsp;

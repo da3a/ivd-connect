@@ -1,0 +1,19 @@
+@import "config";
+
+$theme-colors: (
+  "primary":$fec_primary,
+  "secondary": $fec_secondary,
+  "light": $fec_light,
+  "dark": $fec_dark,
+  "info": $fec-info
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// * {
+// 	margin: 0;
+// 	padding: 0;
+// 	box-sizing: border-box;
+//   border: none;
+// }
+

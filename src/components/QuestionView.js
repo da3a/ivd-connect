@@ -19,15 +19,9 @@ function QuestionEdit({ question }) {
                 <div className="col">
                     <span>{question.Id}: {question.Text}</span>
                 </div>
-            </div>
-            <div className="row">
-                <input
-                    type="range"
-                    className="custom-range"
-                    style={{ height: "100%" }}
-                    value={value}
-                    onChange={(e) => onChange(e)}
-                />
+                <div className="col">
+                    <span>Response: {question.Response}</span>
+                </div>
             </div>
         </React.Fragment>
 

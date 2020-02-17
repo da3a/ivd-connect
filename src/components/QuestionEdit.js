@@ -1,26 +1,28 @@
 import React, { useContext, useState } from "react"
 
-function QuestionEdit({ question }) {
+function QuestionEdit({ question, onUpdateQuestion }) {
 
-    const [value, setValue] = useState(50)
+    const [value, setValue] = useState(question.Response)
 
     function onSubmit(e) {
         e.preventDefault()
-        console(`update the answer....`)
+        console.log(`update the answer....`)
+        onUpdateQuestion(question.Id, value)
     }
 
     function onChange(e) {
+        
         setValue(e.target.value)
     }
 
     return (
         <form onSubmit={(e) => onSubmit(e)}>
-            <div className="row">
+            <div className="row m-4">
                 <div className="col">
                     <span>{question.Id}: {question.Text}</span>
                 </div>
             </div>
-            <div className="row">
+            <div className="row m-2">
                 <input
                     type="range"
                     className="custom-range"

@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react"
 import locales from "./locales"
-import QuestionsConfig from "./config/QuestionsConfig"
+import SurveyConfig from "./config/SurveyConfig"
 
 export const AppContext = createContext()
 
@@ -17,14 +17,20 @@ export function AppProvider(props) {
 
     const [state, setState] = useState(getInitialState())
 
-    const [questions, setQuestions] = useState(QuestionsConfig);
-
-    console.log(`QuestionsConfig: ${QuestionsConfig}`)
+    const [survey, setSurvey] = useState(SurveyConfig);
 
     function getInitialState() {
         return {
             step: 1
         };
+    }
+
+    function  onUpdateQuestion(id, response)  {
+        console.log(`update question id ${id} ${response}`)
+        var tempSurvey = survey
+        tempSurvey.Questions.filter(question => (question.Id === id)).map(question => question.Response = response)
+        setSurvey(prevProducts => (tempSurvey))
+
     }
 
     function nextStep() {
@@ -36,9 +42,8 @@ export function AppProvider(props) {
         setState(prevState => ({ ...prevState, step: state.step - 1 }));
     }
 
-
     return (
-        <AppContext.Provider value={{ state, questions, nextStep, prevStep }}>
+        <AppContext.Provider value={{ state, survey, onUpdateQuestion, nextStep, prevStep }}>
             {props.children}
         </AppContext.Provider>
     )
