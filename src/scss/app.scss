@@ -10,20 +10,16 @@
 
 // @import "../../node_modules/bootstrap/scss/bootstrap";
 
-// * {
-// 	margin: 0;
-// 	padding: 0;
-// 	box-sizing: border-box;
-//   border: none;
-// }
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    border: none;
+}
 
 
 .paper {
-    padding: "2vw";
-    text-align: center;
-    color: #000000;
-    white-space: nowrap;
-    background-color: blue;
-    margin-top: "5vh";
-    margin-bottom: "2vh";
+    padding: "16px";
 }
+
+

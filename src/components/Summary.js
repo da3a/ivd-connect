@@ -20,9 +20,11 @@ function Summary() {
             }
             <div className="row">
                 <div className="col">
-                    <Button className="btn-primary" onClick={(e) => prevStep(e)}>Previous</Button>
+                    <Button  variant="contained"
+            color="primary" onClick={(e) => prevStep(e)}>Previous</Button>
                     &nbsp;
-                <Button className="btn-primary" onClick={(e) => nextStep(e)}>Next</Button>
+                <Button  variant="contained"
+            color="primary" onClick={(e) => nextStep(e)}>Next</Button>
                 </div>
             </div>
         </div>

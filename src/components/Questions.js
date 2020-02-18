@@ -19,17 +19,19 @@ function Questions({ start }) {
                     question => (<QuestionEdit key={question.Id} question={question} onUpdateQuestion={onUpdateQuestion} />)
                 )
             }
-            <div className="row m-2">
-                <div className="col">
+            <div>
+                <div>
                     Questions {parseInt(start)} to {parseInt(start) + 4}
                 </div>
             </div>
 
-            <div className="row m-2">
-                <div className="col">
-                    <Button className="btn-primary" onClick={(e) => prevStep(e)}>Previous</Button>
+            <div>
+                <div>
+                    <Button variant="contained"
+            color="primary" onClick={(e) => prevStep(e)}>Previous</Button>
                     &nbsp;
-                    <Button className="btn-primary" onClick={(e) => nextStep(e)}>Next</Button>
+                    <Button  variant="contained"
+            color="primary" onClick={(e) => nextStep(e)}>Next</Button>
                 </div>
             </div>
         </div>
