@@ -4,35 +4,17 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import Input from "@material-ui/core/Input";
-import VolumeUp from "@material-ui/icons/VolumeUp";
-
-const useStyles = makeStyles({
-  root: {
-    width: 250
-  },
-  input: {
-    width: 42
-  }
-});
+import Sliders from "./Sliders";
 
 function QuestionEdit({ question, onUpdateQuestion }) {
-  const classes = useStyles();
+
   const [value, setValue] = useState(question.Response);
 
-  const handleInputChange = event => {
-    //setValue(event.target.value === "" ? "" : Number(event.target.value));
-    setValue(Number(event.target.value));
-  };
+  function onChange(e, newValue) {
+    console.log(`e.target.value: ${newValue}`);
+    setValue(newValue);
+  }
 
-//   const handleBlur = () => {
-//     if (value < 0) {
-//       setValue(0);
-//     } else if (value > 100) {
-//       setValue(100);
-//     }
-//   };
 
   function onSubmit(e) {
     e.preventDefault();
@@ -40,64 +22,26 @@ function QuestionEdit({ question, onUpdateQuestion }) {
     onUpdateQuestion(question.Id, value);
   }
 
-  function onChange(e) {
-    setValue(e.target.value);
-  }
-
   return (
-    <form onSubmit={e => onSubmit(e)}>
+    <form validated onSubmit={e => onSubmit(e)} style={{marginBottom:"16px"}}>
+      <Grid item>
+        <Typography variant="h6">
+          {question.Id}: {question.Text}
+        </Typography>
+      </Grid>
       <div>
-        <div className="col">
-          <Typography variant="h4">
-            {question.Id}: {question.Text}
-          </Typography>
-        </div>
-      </div>
-      <div className="row m-2">
-        <Grid container spacing={2} alignItems="center">
-          <Grid item>
-          </Grid>
-          <Grid item xs>
-            <Slider
-              value={typeof value === "number" ? value : 0}
-              onChange={handleInputChange}
-              aria-labelledby="input-slider"
-            />
-          </Grid>
-          <Grid item>
-            <Input
-              className={classes.input}
-              value={value}
-              margin="dense"
-              onChange={handleInputChange}
-              //onBlur={handleBlur}
-              inputProps={{
-                step: 10,
-                min: 0,
-                max: 100,
-                type: "number",
-                "aria-labelledby": "input-slider"
-              }}
-            />
-          </Grid>
+        <Grid item>
+          <Sliders value={value} onChange={onChange}/>
         </Grid>
-        <input
-          type="range"
-          className="custom-range"
-          style={{ height: "100%" }}
-        />
-        {value}
       </div>
-      <div className="row">
-        <div className="col-2">
-          <Button className="btn-primary">Update</Button>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <span>{question.Comment}</span>
-        </div>
-      </div>
+      <Grid item>
+        <Button variant="contained" color="primary" onClick={onSubmit}>
+          Update
+        </Button>
+      </Grid>
+      <Grid item>
+        <span>{question.Comment}</span>
+      </Grid>
     </form>
   );
 }

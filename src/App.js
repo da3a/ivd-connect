@@ -38,12 +38,12 @@ function App() {
         <Header />
         <Grid
           container
-          direction="column"
+          direction="row"
           justify="center"
           alignItems="center"
           style={{ height: "70vh" }}
         >
-          <Grid item md={12} style={{border: "1px solid black"}}>
+          <Grid item md={6}>
           <Survey />
           </Grid>
         </Grid>

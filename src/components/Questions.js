@@ -2,8 +2,10 @@ import React, { useContext } from "react"
 import { AppContext } from "../AppContext";
 
 import Button from '@material-ui/core/Button';
+import Typography from "@material-ui/core/Typography";
 
 import QuestionEdit from "./QuestionEdit"
+
 
 function Questions({ start }) {
 
@@ -19,13 +21,7 @@ function Questions({ start }) {
                     question => (<QuestionEdit key={question.Id} question={question} onUpdateQuestion={onUpdateQuestion} />)
                 )
             }
-            <div>
-                <div>
-                    Questions {parseInt(start)} to {parseInt(start) + 4}
-                </div>
-            </div>
-
-            <div>
+            <div style={{marginTop:"16px"}}>
                 <div>
                     <Button variant="contained"
             color="primary" onClick={(e) => prevStep(e)}>Previous</Button>
@@ -34,6 +30,12 @@ function Questions({ start }) {
             color="primary" onClick={(e) => nextStep(e)}>Next</Button>
                 </div>
             </div>
+            <div>
+                <div>
+                    <Typography variant="h6">Questions {parseInt(start)} to {parseInt(start) + 4}</Typography>
+                </div>
+            </div>
+
         </div>
     )
 }

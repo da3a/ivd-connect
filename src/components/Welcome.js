@@ -15,11 +15,10 @@ function Welcome() {
   return (
     <React.Fragment>
       <Paper className="paper">
-          <Typography variant="h4">
-            Welcome: {survey.Header.Name}
+          <Typography variant="h6" style={{margin:"16px"}}>
+            Survey volunteer: {survey.Header.Name}<br/>
+            Please click on the start button to begin the survey. 
           </Typography>
-      </Paper>
-      <Paper className="paper">
           <Button
             variant="contained"
             color="primary"
@@ -27,6 +26,7 @@ function Welcome() {
           >
             Start
           </Button>
+
       </Paper>
     </React.Fragment>
   );

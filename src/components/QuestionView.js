@@ -1,5 +1,9 @@
 import React, { useContext, useState } from "react"
 
+import Typography from "@material-ui/core/Typography";
+
+
+
 function QuestionEdit({ question }) {
 
     const [value, setValue] = useState(50)
@@ -17,10 +21,10 @@ function QuestionEdit({ question }) {
         <React.Fragment>
             <div className="row">
                 <div className="col">
-                    <span>{question.Id}: {question.Text}</span>
+                    <Typography variant="h6">{question.Id}: {question.Text}</Typography>
                 </div>
                 <div className="col">
-                    <span>Response: {question.Response}</span>
+                    <Typography variant="h6">Response: {question.Response}</Typography>
                 </div>
             </div>
         </React.Fragment>
