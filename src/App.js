@@ -41,7 +41,7 @@ function App() {
           direction="row"
           justify="center"
           alignItems="center"
-          style={{ height: "70vh" }}
+          style={{ height: "80vh" }}
         >
           <Grid item md={6}>
           <Survey />

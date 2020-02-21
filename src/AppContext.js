@@ -4,6 +4,8 @@ import SurveyConfig from "./config/SurveyConfig"
 
 export const AppContext = createContext()
 
+export const PAGE_SIZE = 5
+
 export function AppProvider(props) {
     const [config, setConfig] = useState(
         {
@@ -25,16 +27,39 @@ export function AppProvider(props) {
         };
     }
 
+    function handleTerms()
+    {
+        console.log(`toggling accept terms`)
+        let tempSurvey = survey
+        tempSurvey.Header.termsChecked = !tempSurvey.Header.termsChecked
+        setSurvey(prevSurvey => (tempSurvey))
+    }
+
     function  onUpdateQuestion(id, response)  {
         console.log(`update question id ${id} ${response}`)
         var tempSurvey = survey
-        tempSurvey.Questions.filter(question => (question.Id === id)).map(question => question.Response = response)
-        setSurvey(prevProducts => (tempSurvey))
-
+        tempSurvey.Questions.filter(question => (question.id === id)).map(question => question.response = response)
+        setSurvey(prevSurvey => (tempSurvey))
     }
 
-    function nextStep() {
+    function nextStep() {        
         console.log("nextStep...")
+
+        let start = 1
+
+        if (state.step === 3)
+            start = 5
+       
+        if ([2,3].includes(state.step))
+        {
+            let responses = survey.Questions.filter(q => (q.id >= parseInt(start) && q.id < (parseInt(start) + PAGE_SIZE))).map(question => (question.response))
+            if (responses.includes(null))
+                return
+
+        }
+        if (state.step === 5 && !survey.Header.termsChecked)
+            return 
+
         setState(prevState => ({ ...prevState, step: state.step + 1 }));
     }
 
@@ -43,7 +68,7 @@ export function AppProvider(props) {
     }
 
     return (
-        <AppContext.Provider value={{ state, survey, onUpdateQuestion, nextStep, prevStep }}>
+        <AppContext.Provider value={{ state, survey, handleTerms,  onUpdateQuestion, nextStep, prevStep }}>
             {props.children}
         </AppContext.Provider>
     )

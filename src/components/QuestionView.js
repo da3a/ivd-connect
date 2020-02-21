@@ -21,10 +21,10 @@ function QuestionEdit({ question }) {
         <React.Fragment>
             <div className="row">
                 <div className="col">
-                    <Typography variant="h6">{question.Id}: {question.Text}</Typography>
+                    <Typography variant="body1" gutterBottom>{question.id}: {question.text}</Typography>
                 </div>
                 <div className="col">
-                    <Typography variant="h6">Response: {question.Response}</Typography>
+                    <Typography variant="body1" gutterBottom>Response: {question.response}</Typography>
                 </div>
             </div>
         </React.Fragment>

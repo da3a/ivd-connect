@@ -5,28 +5,28 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Sliders from "./Sliders";
+import FormGroup from "@material-ui/core/FormGroup";
 
 function QuestionEdit({ question, onUpdateQuestion }) {
 
-  const [value, setValue] = useState(question.Response);
+  const [value, setValue] = useState(question.response);
 
   function onChange(e, newValue) {
     console.log(`e.target.value: ${newValue}`);
     setValue(newValue);
   }
 
-
   function onSubmit(e) {
     e.preventDefault();
     console.log(`update the answer....`);
-    onUpdateQuestion(question.Id, value);
+    onUpdateQuestion(question.id, value);
   }
 
   return (
-    <form validated onSubmit={e => onSubmit(e)} style={{marginBottom:"16px"}}>
+    <FormGroup onSubmit={e => onSubmit(e)} style={{marginBottom:"16px"}}>
       <Grid item>
-        <Typography variant="h6">
-          {question.Id}: {question.Text}
+        <Typography variant="body1" gutterBottom>
+          {question.id}: {question.text}
         </Typography>
       </Grid>
       <div>
@@ -42,7 +42,7 @@ function QuestionEdit({ question, onUpdateQuestion }) {
       <Grid item>
         <span>{question.Comment}</span>
       </Grid>
-    </form>
+    </FormGroup>
   );
 }
 
