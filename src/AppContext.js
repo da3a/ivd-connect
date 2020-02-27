@@ -36,7 +36,7 @@ export function AppProvider(props) {
     }
 
     function  onUpdateQuestion(id, response)  {
-        console.log(`update question id ${id} ${response}`)
+        console.log(`update question id ${id} ${JSON.stringify(response)}`)
         var tempSurvey = survey
         tempSurvey.Questions.filter(question => (question.id === id)).map(question => question.response = response)
         setSurvey(prevSurvey => (tempSurvey))

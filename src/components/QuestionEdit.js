@@ -4,15 +4,19 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Sliders from "./Sliders";
 import FormGroup from "@material-ui/core/FormGroup";
 
-function QuestionEdit({ question, onUpdateQuestion }) {
+import CustomSlider from "./CustomSlider";
+import CustomCheckbox from "./CustomCheckbox";
+import CustomRadio from "./CustomRadio";
+import CustomText from "./CustomText"
 
-  const [value, setValue] = useState(question.response);
+function QuestionEdit({ question, onUpdateQuestion }) {
+  //here value is a generic object
+  const [value, setValue] = useState({});
 
   function onChange(e, newValue) {
-    console.log(`e.target.value: ${newValue}`);
+    console.log(`onChange in QuestionEdit: new Value: ${JSON.stringify(newValue)}`);
     setValue(newValue);
   }
 
@@ -22,8 +26,23 @@ function QuestionEdit({ question, onUpdateQuestion }) {
     onUpdateQuestion(question.id, value);
   }
 
+  function RenderControl() {
+    switch (question.type) {
+      case "slider":
+        return <CustomSlider value={value} onChange={onChange} />;
+      case "check":
+        return <CustomCheckbox question={question} onChange={onChange} />;
+      case "radio":
+        return <CustomRadio value={value} onChange={onChange} />;
+      case "text":
+        return <CustomText value={value} onChange={onChange} />;
+      default:
+        return <span />;
+    }
+  }
+
   return (
-    <FormGroup onSubmit={e => onSubmit(e)} style={{marginBottom:"16px"}}>
+    <FormGroup onSubmit={e => onSubmit(e)} style={{ marginBottom: "16px" }}>
       <Grid item>
         <Typography variant="body1" gutterBottom>
           {question.id}: {question.text}
@@ -31,7 +50,7 @@ function QuestionEdit({ question, onUpdateQuestion }) {
       </Grid>
       <div>
         <Grid item>
-          <Sliders value={value} onChange={onChange}/>
+          <RenderControl />
         </Grid>
       </div>
       <Grid item>

@@ -80,7 +80,7 @@ const PrettoSlider = withStyles({
 
 
 
-export default function Sliders({value, onChange}) {
+export default function CustomSlider({value, onChange}) {
   const classes = useStyles();
 
   return (
