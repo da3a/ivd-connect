@@ -80,13 +80,13 @@ const PrettoSlider = withStyles({
 
 
 
-export default function CustomSlider({value, onChange}) {
+export default function CustomSlider({question, value, onChange}) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <div className={classes.margin} />
-      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} onChange={onChange} value={value}/>
+      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" onChange={onChange} value={value}/>
     </div>
   );
 }

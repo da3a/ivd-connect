@@ -1,46 +1,43 @@
-import React, {useState} from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-const GreenCheckbox = withStyles({
+const useStyles = makeStyles(theme => ({
   root: {
-    color: green[400],
-    '&$checked': {
-      color: green[600],
-    },
+    display: 'flex',
   },
-  checked: {},
-})(props => <Checkbox color="default" {...props} />);
+  formControl: {
+    margin: theme.spacing(3),
+  },
+}));
 
 export default function CustomCheckbox({question, onChange}) {
+  const classes = useStyles();
   const [state, setState] = React.useState(question.options);
 
   const handleChange = name => event => {
+    console.log(`event.target.checked: ${event.target.checked}`)
     setState({ ...state, [name]: event.target.checked });
-    console.log(`CustomCheckbox handleChange: ${JSON.stringify(state)}`)
-    onChange(event, state)
+    let tempState = state
+    //onChange(event, tempState)
   };
 
-  return (
-Object.keys(question.options).map(
-option => (
-<FormGroup row>
-      <FormControlLabel
-        control={
-          <Checkbox checked={state.checkedA} onChange={handleChange(option)} value={option} />
-        }
-        label={option}
-      />
-    </FormGroup>
+  console.log(`state: ${JSON.stringify(state)}`)
 
-)
-)
+  console.log(`state: ${JSON.stringify(state["No"])}`)
+  
+  return (
+    <div className={classes.root}>
+      <FormControl  className={classes.formControl}>
+        <FormGroup>
+         {Object.keys(question.options).map((option, index) => <FormControlLabel key={index} control={<Checkbox onChange={handleChange(option)} checked={state[option]}/>} label={option}/>)}  
+        </FormGroup>
+      </FormControl>
+    </div>
   );
 }

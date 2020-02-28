@@ -13,29 +13,38 @@ import CustomText from "./CustomText"
 
 function QuestionEdit({ question, onUpdateQuestion }) {
   //here value is a generic object
-  const [value, setValue] = useState({});
+  const [response, setResponse] = useState({value:null});
 
   function onChange(e, newValue) {
     console.log(`onChange in QuestionEdit: new Value: ${JSON.stringify(newValue)}`);
-    setValue(newValue);
+
+    switch (question.type) {
+      case "slider":
+        setResponse({value: newValue})
+      case "check":
+        console.log("check")
+        setResponse({newValue})
+      case "radio":
+        setResponse({value: newValue})
+    }
   }
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(`update the answer....`);
-    onUpdateQuestion(question.id, value);
+    console.log(`onSubmit question id: ${question.id} response: ${JSON.stringify(response)}`);
+    onUpdateQuestion(question.id, response);
   }
 
   function RenderControl() {
     switch (question.type) {
       case "slider":
-        return <CustomSlider value={value} onChange={onChange} />;
+        return <CustomSlider question={question} value={response.value} onChange={onChange} />;
       case "check":
         return <CustomCheckbox question={question} onChange={onChange} />;
       case "radio":
-        return <CustomRadio value={value} onChange={onChange} />;
+        return <CustomRadio question={question} value={response.value} onChange={onChange} />;
       case "text":
-        return <CustomText value={value} onChange={onChange} />;
+        return <CustomText value={response} onChange={onChange} />;
       default:
         return <span />;
     }

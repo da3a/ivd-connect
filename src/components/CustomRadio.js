@@ -64,20 +64,11 @@ function StyledRadio(props) {
   );
 }
 
-export default function CustomRadio() {
+export default function CustomRadio({question, value, onChange}) {
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Gender</FormLabel>
-      <RadioGroup defaultValue="female" aria-label="gender" name="customized-radios">
-        <FormControlLabel value="female" control={<StyledRadio />} label="Female" />
-        <FormControlLabel value="male" control={<StyledRadio />} label="Male" />
-        <FormControlLabel value="other" control={<StyledRadio />} label="Other" />
-        <FormControlLabel
-          value="disabled"
-          disabled
-          control={<StyledRadio />}
-          label="(Disabled option)"
-        />
+      <RadioGroup aria-label="gender" name="customized-radios" onChange={onChange} value={value}>
+        {Object.keys(question.options).map((option, index) => <FormControlLabel key={index} value={option} control={<StyledRadio />} label={option} />)}
       </RadioGroup>
     </FormControl>
   );

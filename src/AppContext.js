@@ -40,6 +40,7 @@ export function AppProvider(props) {
         var tempSurvey = survey
         tempSurvey.Questions.filter(question => (question.id === id)).map(question => question.response = response)
         setSurvey(prevSurvey => (tempSurvey))
+        console.log(survey.Questions)
     }
 
     function nextStep() {        
