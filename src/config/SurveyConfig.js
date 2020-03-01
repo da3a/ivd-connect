@@ -3,10 +3,10 @@ const SurveyConfig =
     Header: {
         id: 1,
         name: "David Wallwin",
-        termsChecked: false, 
-        comments: ""      
+        termsChecked: false,
+        comments: ""
     },
-Questions:     [
+    Questions: [
         {
             id: 1,
             text: "Do you notice your skin is firmer?",
@@ -21,14 +21,14 @@ Questions:     [
             id: 2,
             text: "Do you notice your skin is more elastic?",
             type: "radio",
-            options: {"Yes":true, "No":false, "Maybe":false},
+            options: ["Yes", "No", "Maybe"],
             response: null
         },
         {
             id: 3,
             text: "Do you notice a reduction in skin sagging?",
             type: "check",
-            options: {"Yes":true, "No":false, "Maybe":false},
+            options: ["Yes", "No", "Maybe"],
             response: null
         },
         // {

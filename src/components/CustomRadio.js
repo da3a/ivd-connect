@@ -64,11 +64,11 @@ function StyledRadio(props) {
   );
 }
 
-export default function CustomRadio({question, value, onChange}) {
+export default function CustomRadio({ question, value, onChange }) {
   return (
     <FormControl component="fieldset">
       <RadioGroup aria-label="gender" name="customized-radios" onChange={onChange} value={value}>
-        {Object.keys(question.options).map((option, index) => <FormControlLabel key={index} value={option} control={<StyledRadio />} label={option} />)}
+        {question.options.map((option, index) => <FormControlLabel key={index} value={option} control={<StyledRadio />} label={option} />)}
       </RadioGroup>
     </FormControl>
   );

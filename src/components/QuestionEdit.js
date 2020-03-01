@@ -13,20 +13,26 @@ import CustomText from "./CustomText"
 
 function QuestionEdit({ question, onUpdateQuestion }) {
   //here value is a generic object
-  const [response, setResponse] = useState({value:null});
+  const [response, setResponse] = useState({ value: null });
+
+  function onChangeCheckbox(newValue) {
+    console.log(`onChangeCheckbox: newValue: ${JSON.stringify(newValue)}`)
+    setResponse(newValue)
+    console.log(`responses: ${JSON.stringify(response)}`)
+  }
 
   function onChange(e, newValue) {
     console.log(`onChange in QuestionEdit: new Value: ${JSON.stringify(newValue)}`);
-
     switch (question.type) {
       case "slider":
-        setResponse({value: newValue})
+        setResponse({ value: newValue })
       case "check":
         console.log("check")
-        setResponse({newValue})
+        setResponse({ newValue })
       case "radio":
-        setResponse({value: newValue})
+        setResponse({ value: newValue })
     }
+    console.log(`responses: ${JSON.stringify(response)}`)
   }
 
   function onSubmit(e) {
@@ -40,7 +46,7 @@ function QuestionEdit({ question, onUpdateQuestion }) {
       case "slider":
         return <CustomSlider question={question} value={response.value} onChange={onChange} />;
       case "check":
-        return <CustomCheckbox question={question} onChange={onChange} />;
+        return <CustomCheckbox question={question} value={response.value} onChange={onChange} />;
       case "radio":
         return <CustomRadio question={question} value={response.value} onChange={onChange} />;
       case "text":
