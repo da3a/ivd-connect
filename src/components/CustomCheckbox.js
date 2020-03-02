@@ -16,14 +16,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomCheckbox({ question, onChange }) {
+export default function CustomCheckbox({ question, handleChange }) {
 
   const classes = useStyles();
   const [state, setState] = React.useState([]);
 
   console.log(`debugging state: ${JSON.stringify(state)}`)
 
-  const handleChange = name => event => {
+  const handleChange1 = name => event => {
     console.log(`name: ${name} event.target.checked: ${event.target.checked}`)
     if (event.target.checked) {
       setState([...state, name])
@@ -32,7 +32,7 @@ export default function CustomCheckbox({ question, onChange }) {
     else
       setState(state.filter(x => x != name))
     console.log(`state: ${JSON.stringify(state)}`)
-    //onChange(name, state)
+   //onChange(name, state)
   };
 
   console.log(`state: ${JSON.stringify(state)} `)
@@ -41,7 +41,7 @@ export default function CustomCheckbox({ question, onChange }) {
     <div className={classes.root}>
       <FormControl className={classes.formControl}>
         <FormGroup>
-          {question.options.map((option, index) => <FormControlLabel key={option} control={<Checkbox onChange={handleChange(option)} checked={state[option]} value={option} />} label={option} />)}
+          {question.options.map((option, index) => <FormControlLabel key={option} control={<Checkbox onChange={(e)=> handleChange(e.target.value)} checked={state[option]} value={option} />} label={option} />)}
         </FormGroup>
       </FormControl>
     </div>

@@ -17,8 +17,8 @@ function QuestionEdit({ question, onUpdateQuestion }) {
 
   function onChangeCheckbox(newValue) {
     console.log(`onChangeCheckbox: newValue: ${JSON.stringify(newValue)}`)
-    setResponse(newValue)
-    console.log(`responses: ${JSON.stringify(response)}`)
+    //setResponse(newValue)
+    //console.log(`responses: ${JSON.stringify(response)}`)
   }
 
   function onChange(e, newValue) {
@@ -28,7 +28,7 @@ function QuestionEdit({ question, onUpdateQuestion }) {
         setResponse({ value: newValue })
       case "check":
         console.log("check")
-        setResponse({ newValue })
+        setResponse({ value: newValue })
       case "radio":
         setResponse({ value: newValue })
     }
@@ -46,7 +46,7 @@ function QuestionEdit({ question, onUpdateQuestion }) {
       case "slider":
         return <CustomSlider question={question} value={response.value} onChange={onChange} />;
       case "check":
-        return <CustomCheckbox question={question} value={response.value} onChange={onChange} />;
+        return <CustomCheckbox question={question} value={response.value} handleChange={onChangeCheckbox} />;
       case "radio":
         return <CustomRadio question={question} value={response.value} onChange={onChange} />;
       case "text":
